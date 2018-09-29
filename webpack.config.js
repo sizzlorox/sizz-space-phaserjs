@@ -4,10 +4,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
+  target: 'web',
   entry: path.resolve(__dirname, 'src/game/game.js'),
   output: {
     path: path.resolve(__dirname, 'build'),
-    publicPath: '/build/',
+    publicPath: '/',
     filename: 'js/bundle.js'
   },
   plugins: [
@@ -43,6 +44,17 @@ module.exports = {
       {
         test: [/\.vert$/, /\.frag$/],
         use: 'raw-loader'
+      },
+      {
+        test: /.(ttf|otf|eot|svg|png|jpeg|woff(2)?)(\?[a-z0-9]+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+            }
+          }
+        ]
       }
     ]
   }

@@ -9,7 +9,7 @@ module.exports = {
   entry: path.resolve(__dirname, 'src/game/game.js'),
   output: {
     path: path.resolve(__dirname, 'build'),
-    publicPath: '/build/',
+    publicPath: '/',
     filename: 'js/bundle.js'
   },
   plugins: [
