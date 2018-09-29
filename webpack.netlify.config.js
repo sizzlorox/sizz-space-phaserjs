@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -39,6 +38,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
         use: ['babel-loader'],
         include: path.join(__dirname, 'src')
       },
@@ -57,23 +57,6 @@ module.exports = {
           }
         ]
       }
-    ]
-  },
-  optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          warnings: false,
-          output: {
-            comments: false,
-            beautify: false
-          },
-          compress: true,
-          keep_classnames: false,
-          keep_fnames: false
-        },
-        sourceMap: false
-      })
     ]
   }
 };
